@@ -378,16 +378,14 @@ md2_render(struct md2_model *mp, unsigned int frame)
 	glPopMatrix();
 }
 
-#ifndef bzero
-void
-bzero(void *p, unsigned int size)
+static void
+my_bzero(void *p, unsigned int size)
 {
 	unsigned int i;
 
 	for(i = 0; i < size; i++)
 		((int8_t *)p)[i] = 0;
 }
-#endif /* bzero */
 
 struct md2_model *
 md2_load(const char *filename)
@@ -462,14 +460,14 @@ md2_load(const char *filename)
 		return NULL;
 	}
 	mp->num_edges = m.numTriangles * 3;
-	bzero(mp->t_edges, sizeof(struct md2_tri_edge) * mp->num_edges);
+	my_bzero(mp->t_edges, sizeof(struct md2_tri_edge) * mp->num_edges);
 
 	mp->t_info = malloc(sizeof(struct md2_tri_info) * m.numTriangles);
 	if(!mp->t_info) {
 		fprintf(stderr, "Error: Couldn't allocate memory for triangle info\n");
 		return NULL;
 	}
-	bzero(mp->t_info, sizeof(struct md2_tri_info) * m.numTriangles);
+	my_bzero(mp->t_info, sizeof(struct md2_tri_info) * m.numTriangles);
 
 	/* set up edges */
 	for(i = 0; i < m.numTriangles; i++) {
