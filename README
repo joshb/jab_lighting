@@ -1,0 +1,30 @@
+jab_lighting-0.1 (June 7, 2003)
+
+Written by Josh Beam <josh@joshbeam.com>
+Website: http://joshbeam.com/
+
+This is an OpenGL demo featuring dynamic lighting and shadows.
+The lighting is achieved by multitexturing surfaces with dynamic lightmaps.
+The shadows are created with stenciled shadow volumes, projected from a model
+in the middle of the scene. Models can be loaded from md2 files, which are
+used by Quake II (this demo doesn't include any md2 files, but it can run
+without any and will just display dynamic lighting). Note that proper shadow
+volumes can only be created from completely closed models; the male and female
+models from Quake II work, many third-party models don't.
+
+This program requires GLUT in addition to OpenGL. It has been
+tested on Slackware Linux and OpenBSD.
+
+To compile the program, just run 'make' from the jab_lighting-0.1 directory.
+This will create an executable called 'main' and the program can then be
+run like this:
+	./main [<md2 model filename> <pcx skin filename>]
+
+where <md2 model filename> is the name of an md2 model, and <pcx skin filename>
+is the name of a PCX skin to texture the model with (must be 8-bit and
+256x256, or any other size where the width and height are powers of 2).
+You can also just run './main' and the demo will run without a model in the
+middle of the scene.
+
+The code for this program is released under a BSD-style license, and the PCX
+images in the data directory are public domain.
